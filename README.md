@@ -4,6 +4,9 @@
 
 ![Logo](https://img.shields.io/badge/WeChatAuto-Publisher-blue?style=for-the-badge&logo=wechat)
 
+[![GitHub Stars](https://img.shields.io/github/stars/Canqiang/wechat-auto-publisher?style=social)](https://github.com/Canqiang/wechat-auto-publisher/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Canqiang/wechat-auto-publisher?style=social)](https://github.com/Canqiang/wechat-auto-publisher/network/members)
+
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![React](https://img.shields.io/badge/React-18.0+-blue.svg)](https://reactjs.org)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://docker.com)
@@ -591,6 +594,34 @@ git push origin feature/your-feature-name
 - **项目主页**: https://github.com/Canqiang/wechat-auto-publisher
 - **问题反馈**: https://github.com/Canqiang/wechat-auto-publisher/issues
 - **邮箱**: canqiangxu@yeah.net
+
+## 💖 支持项目
+
+如果这个项目对你有帮助，欢迎支持一下作者！你的支持是我持续开发的动力 ❤️
+
+### ⭐ 给项目点个Star
+
+如果你觉得这个项目不错，请在GitHub上给个⭐️，这对我来说意义重大！
+
+### ☕ 请作者喝杯咖啡
+
+<div align="center">
+
+| 微信赞赏 | 支付宝 |
+| :---: | :---: |
+| ![微信赞赏码](docs/images/wechat-reward.png) | ![支付宝收款码](docs/images/alipay-reward.png) |
+| *微信扫码赞赏* | *支付宝扫码支持* |
+
+</div>
+
+> **注意**: 请将你的微信赞赏码和支付宝收款码图片分别保存为 `docs/images/wechat-reward.png` 和 `docs/images/alipay-reward.png`
+
+### 🎯 其他支持方式
+
+- **分享项目**: 帮忙分享给需要的朋友
+- **提交Issue**: 发现问题或建议都可以提出
+- **贡献代码**: 欢迎提交PR改进项目
+- **写使用教程**: 分享你的使用经验
 
 ---
 
