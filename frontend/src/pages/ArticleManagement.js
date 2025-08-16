@@ -15,7 +15,9 @@ import {
   message,
   Popconfirm,
   Tooltip,
-  Badge
+  Badge,
+  Alert,
+  Switch
 } from 'antd';
 import {
   PlusOutlined,
@@ -42,6 +44,14 @@ const ArticleManagement = () => {
   const [currentArticle, setCurrentArticle] = useState(null);
   const [filterStatus, setFilterStatus] = useState('all');
   const [form] = Form.useForm();
+  
+  // 新增状态用于AI生成和爬取对话框
+  const [generateModalVisible, setGenerateModalVisible] = useState(false);
+  const [crawlModalVisible, setCrawlModalVisible] = useState(false);
+  const [generateLoading, setGenerateLoading] = useState(false);
+  const [crawlLoading, setCrawlLoading] = useState(false);
+  const [generateForm] = Form.useForm();
+  const [crawlForm] = Form.useForm();
 
   // 模拟数据
   useEffect(() => {
@@ -309,6 +319,100 @@ const ArticleManagement = () => {
     }
   };
 
+  // AI生成文章
+  const handleGenerate = () => {
+    setGenerateModalVisible(true);
+    generateForm.resetFields();
+  };
+
+  const handleGenerateOk = async () => {
+    try {
+      const values = await generateForm.validateFields();
+      setGenerateLoading(true);
+      
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        const newArticle = {
+          id: Date.now(),
+          title: result.article.title,
+          content: result.article.content,
+          status: 'draft',
+          createdAt: new Date().toLocaleString(),
+          views: 0,
+          likes: 0,
+          comments: 0,
+          tags: ['AI生成']
+        };
+        setArticles([newArticle, ...articles]);
+        message.success(result.message);
+        setGenerateModalVisible(false);
+      } else {
+        message.error(result.message);
+      }
+    } catch (error) {
+      message.error('生成失败，请检查网络连接');
+      console.error('Generate error:', error);
+    } finally {
+      setGenerateLoading(false);
+    }
+  };
+
+  // 爬取文章
+  const handleCrawl = () => {
+    setCrawlModalVisible(true);
+    crawlForm.resetFields();
+  };
+
+  const handleCrawlOk = async () => {
+    try {
+      const values = await crawlForm.validateFields();
+      setCrawlLoading(true);
+      
+      const response = await fetch('/api/crawl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        const newArticles = result.articles.map((article, index) => ({
+          id: Date.now() + index,
+          title: article.title,
+          content: article.content,
+          status: 'draft',
+          createdAt: new Date().toLocaleString(),
+          views: 0,
+          likes: 0,
+          comments: 0,
+          tags: ['爬取', article.source || '外部']
+        }));
+        setArticles([...newArticles, ...articles]);
+        message.success(result.message);
+        setCrawlModalVisible(false);
+      } else {
+        message.error(result.message);
+      }
+    } catch (error) {
+      message.error('爬取失败，请检查网络连接');
+      console.error('Crawl error:', error);
+    } finally {
+      setCrawlLoading(false);
+    }
+  };
+
   // 统计数据
   const stats = {
     total: articles.length,
@@ -370,10 +474,10 @@ const ArticleManagement = () => {
               <Button type="primary" icon={<PlusOutlined />} onClick={handleCreate}>
                 新建文章
               </Button>
-              <Button icon={<BulbOutlined />}>
+              <Button icon={<BulbOutlined />} onClick={handleGenerate}>
                 AI生成
               </Button>
-              <Button icon={<RocketOutlined />}>
+              <Button icon={<RocketOutlined />} onClick={handleCrawl}>
                 爬取文章
               </Button>
               <Button 
@@ -496,6 +600,152 @@ const ArticleManagement = () => {
             </Form.Item>
           </Form>
         )}
+      </Modal>
+
+      {/* AI生成文章模态框 */}
+      <Modal
+        title="AI生成文章"
+        open={generateModalVisible}
+        onOk={handleGenerateOk}
+        onCancel={() => setGenerateModalVisible(false)}
+        confirmLoading={generateLoading}
+        width={600}
+      >
+        <Form form={generateForm} layout="vertical">
+          <Form.Item
+            name="topic"
+            label="文章主题"
+            rules={[{ required: true, message: '请输入文章主题' }]}
+          >
+            <Input 
+              placeholder="例如：人工智能在医疗领域的应用" 
+              showCount 
+              maxLength={100}
+            />
+          </Form.Item>
+          
+          <Form.Item
+            name="style"
+            label="写作风格"
+            initialValue="professional"
+          >
+            <Select>
+              <Select.Option value="professional">专业严谨</Select.Option>
+              <Select.Option value="casual">轻松随意</Select.Option>
+              <Select.Option value="creative">创意有趣</Select.Option>
+            </Select>
+          </Form.Item>
+          
+          <Form.Item
+            name="length"
+            label="文章长度"
+            initialValue="medium"
+          >
+            <Select>
+              <Select.Option value="short">短文章 (500字左右)</Select.Option>
+              <Select.Option value="medium">中等篇幅 (1000字左右)</Select.Option>
+              <Select.Option value="long">长文章 (2000字左右)</Select.Option>
+            </Select>
+          </Form.Item>
+          
+          <Alert
+            message="提示"
+            description="AI将根据您的要求生成文章，生成后将自动保存为草稿，您可以进一步编辑和完善。"
+            type="info"
+            showIcon
+            style={{ marginTop: '16px' }}
+          />
+        </Form>
+      </Modal>
+
+      {/* 爬取文章模态框 */}
+      <Modal
+        title="智能爬取文章"
+        open={crawlModalVisible}
+        onOk={handleCrawlOk}
+        onCancel={() => setCrawlModalVisible(false)}
+        confirmLoading={crawlLoading}
+        width={700}
+      >
+        <Form form={crawlForm} layout="vertical">
+          <Form.Item
+            name="source_type"
+            label="爬取源类型"
+            initialValue="auto"
+          >
+            <Select>
+              <Select.Option value="auto">🤖 自动识别</Select.Option>
+              <Select.Option value="wechat">📱 微信公众号</Select.Option>
+              <Select.Option value="zhihu">🎓 知乎答主</Select.Option>
+              <Select.Option value="website">🌐 通用网站</Select.Option>
+            </Select>
+          </Form.Item>
+          
+          <Form.Item
+            name="source_url"
+            label="爬取源URL"
+            rules={[
+              { required: true, message: '请输入爬取源URL' }
+            ]}
+          >
+            <Input.TextArea 
+              placeholder={`请输入URL，支持多种类型：
+              
+• 微信公众号文章：https://mp.weixin.qq.com/s/xxxxx
+• 知乎答主主页：https://www.zhihu.com/people/xxxxx  
+• 通用网站：https://example.com
+• RSS订阅：https://example.com/rss`}
+              rows={4}
+            />
+          </Form.Item>
+          
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                name="max_count"
+                label="最大爬取数量"
+                initialValue={5}
+              >
+                <Select>
+                  <Select.Option value={1}>1篇</Select.Option>
+                  <Select.Option value={3}>3篇</Select.Option>
+                  <Select.Option value={5}>5篇</Select.Option>
+                  <Select.Option value={10}>10篇</Select.Option>
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                name="enable_rewrite"
+                label="LLM智能改写"
+                initialValue={true}
+                valuePropName="checked"
+              >
+                <Switch 
+                  checkedChildren="启用" 
+                  unCheckedChildren="关闭"
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          
+          <Alert
+            message="🚀 智能爬取功能"
+            description={
+              <div>
+                <p><strong>✨ 支持多种内容源：</strong></p>
+                <p>• <strong>微信公众号</strong>：爬取单篇文章内容</p>
+                <p>• <strong>知乎答主</strong>：获取用户最新文章和优质回答</p>
+                <p>• <strong>通用网站</strong>：智能识别RSS源或页面文章</p>
+                <p><strong>🤖 AI改写：</strong>将爬取内容智能改写为微信公众号风格</p>
+                <p><strong>📝 版权提醒：</strong>请确保内容使用符合法律法规</p>
+              </div>
+            }
+            type="info"
+            showIcon
+            style={{ marginTop: '16px' }}
+          />
+        </Form>
       </Modal>
     </div>
   );

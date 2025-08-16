@@ -16,6 +16,8 @@ class Article(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     published_at = db.Column(db.DateTime)
     tags = db.Column(db.JSON)
+    ai_generated = db.Column(db.Boolean, default=False)
+    meta_data = db.Column(db.JSON)
     
     def to_dict(self):
         return {

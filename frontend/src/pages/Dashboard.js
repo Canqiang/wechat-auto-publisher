@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Card, 
   Row, 
@@ -39,13 +40,40 @@ const Dashboard = () => {
   const [recentArticles, setRecentArticles] = useState([]);
   const [notifications, setNotifications] = useState([]);
 
-  // 模拟数据加载
+  // 数据加载
   useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
+    loadData();
+  }, []);
+  
+  const loadData = async () => {
+    setLoading(true);
+    
+    try {
+      const response = await fetch('/api/analytics/dashboard');
+      const result = await response.json();
       
-      // 模拟API调用
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      if (result.success) {
+        const data = result.data;
+        
+        setStats({
+          totalArticles: data.stats.total_articles,
+          published: data.stats.published,
+          scheduled: data.stats.scheduled,
+          draft: data.stats.draft
+        });
+        
+        setRecentArticles(data.recent_articles || []);
+        setNotifications(data.notifications || []);
+        setLoading(false);
+        return;
+      }
+    } catch (error) {
+      console.error('加载数据失败:', error);
+    }
+    
+    // 如果API失败或无数据，使用模拟数据
+    // 模拟API调用
+    await new Promise(resolve => setTimeout(resolve, 1000));
       
       setStats({
         totalArticles: 42,
@@ -109,11 +137,8 @@ const Dashboard = () => {
         }
       ]);
 
-      setLoading(false);
-    };
-
-    loadData();
-  }, []);
+    setLoading(false);
+  };
 
   // 获取状态颜色
   const getStatusColor = (status) => {
