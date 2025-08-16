@@ -1,0 +1,402 @@
+/* 基础样式重置 */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+  line-height: 1.6;
+}
+
+#root {
+  height: 100%;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* 通用工具类 */
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.ml-16 {
+  margin-left: 16px;
+}
+
+.mr-16 {
+  margin-right: 16px;
+}
+
+.p-16 {
+  padding: 16px;
+}
+
+.p-24 {
+  padding: 24px;
+}
+
+/* 动画效果 */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.bounce-in {
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 加载动画 */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #1677ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-dots {
+  display: inline-block;
+}
+
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);
+  }
+  40% {
+    color: black;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);
+  }
+  60% {
+    text-shadow:
+      .25em 0 0 black,
+      .5em 0 0 rgba(0,0,0,0);
+  }
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 black,
+      .5em 0 0 black;
+  }
+}
+
+/* 渐变背景 */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 卡片悬停效果 */
+.card-hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 按钮样式 */
+.btn-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  color: white;
+}
+
+/* 状态指示器 */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.status-online {
+  background-color: #52c41a;
+}
+
+.status-offline {
+  background-color: #ff4d4f;
+}
+
+.status-warning {
+  background-color: #faad14;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+  
+  .mobile-stack {
+    flex-direction: column !important;
+  }
+  
+  .mobile-text-center {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .sm-hidden {
+    display: none !important;
+  }
+  
+  .sm-full-width {
+    width: 100% !important;
+  }
+}
+
+/* 自定义Antd组件样式 */
+.ant-layout {
+  min-height: 100vh;
+}
+
+.ant-layout-sider {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.06);
+}
+
+.ant-menu-item:hover {
+  color: #1677ff;
+}
+
+.ant-menu-item-selected {
+  background-color: #e6f7ff !important;
+  color: #1677ff;
+}
+
+.ant-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #fafafa;
+  font-weight: 600;
+}
+
+.ant-btn-primary {
+  background: #1677ff;
+  border-color: #1677ff;
+}
+
+.ant-btn-primary:hover {
+  background: #4096ff;
+  border-color: #4096ff;
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #141414;
+    color: #ffffff;
+  }
+  
+  .ant-layout {
+    background-color: #141414;
+  }
+  
+  .ant-card {
+    background-color: #1f1f1f;
+    border-color: #434343;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .ant-layout-sider {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* 选择文本样式 */
+::selection {
+  background-color: #bae7ff;
+  color: #1677ff;
+}
+
+::-moz-selection {
+  background-color: #bae7ff;
+  color: #1677ff;
+}
+
+/* 焦点样式 */
+:focus {
+  outline: 2px solid #1677ff;
+  outline-offset: 2px;
+}
+
+/* 无障碍访问 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 代码高亮 */
+code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  background-color: #f6f8fa;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.875em;
+}
+
+pre {
+  background-color: #f6f8fa;
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  line-height: 1.45;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}

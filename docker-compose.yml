@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./backend:/app
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/wechat_auto
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+      - WECHAT_APP_ID=${WECHAT_APP_ID}
+      - WECHAT_APP_SECRET=${WECHAT_APP_SECRET}
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=wechat_auto
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

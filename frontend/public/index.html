@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="微信公众号自动运营系统 - 智能内容生成、爬取改写、定时发布" />
+    <meta name="keywords" content="微信公众号,自动运营,内容生成,AI写作,定时发布" />
+    <meta name="author" content="WeChat Auto Publisher" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%PUBLIC_URL%" />
+    <meta property="og:title" content="微信公众号自动运营系统" />
+    <meta property="og:description" content="智能内容生成、爬取改写、定时发布的一站式解决方案" />
+    <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="%PUBLIC_URL%" />
+    <meta property="twitter:title" content="微信公众号自动运营系统" />
+    <meta property="twitter:description" content="智能内容生成、爬取改写、定时发布的一站式解决方案" />
+    <meta property="twitter:image" content="%PUBLIC_URL%/logo192.png" />
+    
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 自定义样式 -->
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f5f5f5;
+      }
+
+      code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+          monospace;
+      }
+
+      .ant-layout {
+        min-height: 100vh;
+      }
+
+      .loading-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.3s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .bg-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .scrollbar-thin {
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e0 #f7fafc;
+      }
+
+      .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .scrollbar-thin::-webkit-scrollbar-track {
+        background: #f7fafc;
+        border-radius: 3px;
+      }
+
+      .scrollbar-thin::-webkit-scrollbar-thumb {
+        background: #cbd5e0;
+        border-radius: 3px;
+      }
+
+      .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
+      }
+    </style>
+    
+    <title>微信公众号自动运营系统</title>
+  </head>
+  <body>
+    <noscript>您需要启用 JavaScript 才能运行此应用程序。</noscript>
+    <div id="root"></div>
+    
+    <!-- 全局脚本 -->
+    <script>
+      // 全局错误处理
+      window.addEventListener('error', function(e) {
+        console.error('Global error:', e.error);
+      });
+
+      // 全局未处理的Promise错误
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('Unhandled promise rejection:', e.reason);
+        e.preventDefault();
+      });
+
+      // 性能监控
+      window.addEventListener('load', function() {
+        if ('performance' in window) {
+          const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+          console.log('Page load time:', loadTime + 'ms');
+        }
+      });
+    </script>
+  </body>
+</html>
