@@ -6,6 +6,7 @@
 
 [![GitHub Stars](https://img.shields.io/github/stars/Canqiang/wechat-auto-publisher?style=social)](https://github.com/Canqiang/wechat-auto-publisher/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/Canqiang/wechat-auto-publisher?style=social)](https://github.com/Canqiang/wechat-auto-publisher/network/members)
+[![Stargazers over time](https://starchart.cc/Canqiang/wechat-auto-publisher.svg)](https://starchart.cc/Canqiang/wechat-auto-publisher)
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![React](https://img.shields.io/badge/React-18.0+-blue.svg)](https://reactjs.org)
@@ -602,6 +603,12 @@ git push origin feature/your-feature-name
 ### ⭐ 给项目点个Star
 
 如果你觉得这个项目不错，请在GitHub上给个⭐️，这对我来说意义重大！
+
+<div align="center">
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date)](https://star-history.com/#Canqiang/wechat-auto-publisher&Date)
+
+</div>
 
 ### ☕ 请作者喝杯咖啡
 

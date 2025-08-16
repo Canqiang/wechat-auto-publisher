@@ -241,6 +241,9 @@ images/
 backend/data/uploads/
 backend/data/images/
 
+# Allow docs/images for README assets
+!docs/images/
+
 # Environment files
 .env.local
 .env.development
