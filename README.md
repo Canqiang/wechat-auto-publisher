@@ -621,8 +621,6 @@ git push origin feature/your-feature-name
 
 </div>
 
-> **注意**: 请将你的微信赞赏码和支付宝收款码图片分别保存为 `docs/images/wechat-reward.png` 和 `docs/images/alipay-reward.png`
-
 ### 🎯 其他支持方式
 
 - **分享项目**: 帮忙分享给需要的朋友
