@@ -6,7 +6,7 @@
 
 [![GitHub Stars](https://img.shields.io/github/stars/Canqiang/wechat-auto-publisher?style=social)](https://github.com/Canqiang/wechat-auto-publisher/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/Canqiang/wechat-auto-publisher?style=social)](https://github.com/Canqiang/wechat-auto-publisher/network/members)
-[![Stargazers over time](https://starchart.cc/Canqiang/wechat-auto-publisher.svg)](https://starchart.cc/Canqiang/wechat-auto-publisher)
+
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![React](https://img.shields.io/badge/React-18.0+-blue.svg)](https://reactjs.org)
@@ -610,16 +610,6 @@ git push origin feature/your-feature-name
 
 </div>
 
-### ☕ 请作者喝杯咖啡
-
-<div align="center">
-
-| 微信赞赏 | 支付宝 |
-| :---: | :---: |
-| ![微信赞赏码](docs/images/wechat-reward.png) | ![支付宝收款码](docs/images/alipay-reward.png) |
-| *微信扫码赞赏* | *支付宝扫码支持* |
-
-</div>
 
 ### 🎯 其他支持方式
 
