@@ -627,3 +627,5 @@ git push origin feature/your-feature-name
 Made with ❤️ by [Canqiang Xu](https://github.com/Canqiang)
 
 </div>
+
+<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://www.star-history.com/embed?secret=Z2hwX3Y5TmV1YVZTWWdJYmkyNkJUeWtCOUVWVmlxRmY1QzJRZ2dIVw==#Canqiang/wechat-auto-publisher&Timeline" frameBorder="0"></iframe>
