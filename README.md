@@ -607,7 +607,7 @@ git push origin feature/your-feature-name
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date&t=20250819)](https://star-history.com/#Canqiang/wechat-auto-publisher&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date)](https://star-history.com/#Canqiang/wechat-auto-publisher&Date)
 ### 🎯 其他支持方式
 
 - **分享项目**: 帮忙分享给需要的朋友
