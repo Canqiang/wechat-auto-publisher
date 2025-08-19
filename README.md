@@ -607,7 +607,13 @@ git push origin feature/your-feature-name
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date)](https://star-history.com/#Canqiang/wechat-auto-publisher&Date)
+<a href="https://star-history.com/#Canqiang/wechat-auto-publisher&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date" />
+  </picture>
+</a>
 ### 🎯 其他支持方式
 
 - **分享项目**: 帮忙分享给需要的朋友
