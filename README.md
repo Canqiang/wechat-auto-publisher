@@ -604,11 +604,9 @@ git push origin feature/your-feature-name
 
 如果你觉得这个项目不错，请在GitHub上给个⭐️，这对我来说意义重大！
 
+## Star History
 
-
-[![Star History Chart](https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date)](https://star-history.com/#Canqiang/wechat-auto-publisher&Date)
-
-
+[![Star History Chart](https://api.star-history.com/svg?repos=Canqiang/wechat-auto-publisher&type=Date)](https://www.star-history.com/#Canqiang/wechat-auto-publisher&Date)
 ### 🎯 其他支持方式
 
 - **分享项目**: 帮忙分享给需要的朋友
